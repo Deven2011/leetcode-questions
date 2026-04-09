@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harshvardhan Beniwal — Portfolio</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -15,9 +10,9 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
 
-.cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(88,166,255,.07) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left .08s,top .08s;z-index:9999}
+#particles-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
 
-nav{background:rgba(13,17,23,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--bg3);padding:14px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:999}
+nav{background:rgba(13,17,23,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--bg3);padding:14px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:999}
 .nav-logo{font-family:var(--mono);color:var(--blue);font-size:15px;font-weight:600;letter-spacing:1px}
 .nav-logo span{color:var(--muted)}
 .nav-links{display:flex;gap:28px}
@@ -25,17 +20,15 @@ nav{background:rgba(13,17,23,0.88);backdrop-filter:blur(12px);border-bottom:1px 
 .nav-links a:hover{color:var(--text)}
 
 .hero{position:relative;padding:110px 40px 90px;max-width:960px;margin:0 auto;overflow:hidden}
-#particles-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.hero>*:not(#particles-canvas){position:relative;z-index:1}
 .hero-eyebrow{font-family:var(--mono);font-size:13px;color:var(--blue);margin-bottom:20px;opacity:0;animation:fadeUp .6s .1s forwards}
 .hero h1{font-size:56px;font-weight:700;line-height:1.1;margin-bottom:16px;opacity:0;animation:fadeUp .6s .25s forwards}
 .hero h1 .name{background:linear-gradient(90deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-size:18px;color:var(--muted);line-height:1.7;max-width:540px;margin-bottom:36px;opacity:0;animation:fadeUp .6s .4s forwards}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .55s forwards}
-.btn-p{background:var(--blue);color:#0d1117;padding:11px 26px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:background .2s,transform .15s}
-.btn-p:hover{background:var(--blue2);transform:translateY(-2px)}
-.btn-s{background:transparent;color:var(--blue);padding:11px 26px;border-radius:8px;font-size:14px;font-weight:600;border:1px solid var(--bg3);cursor:pointer;transition:border-color .2s,transform .15s}
-.btn-s:hover{border-color:var(--blue);transform:translateY(-2px)}
+.btn-p{background:var(--blue);color:#0d1117;padding:11px 26px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:background .2s,transform .1s}
+.btn-p:hover{background:var(--blue2);transform:translateY(-1px)}
+.btn-s{background:transparent;color:var(--blue);padding:11px 26px;border-radius:8px;font-size:14px;font-weight:600;border:1px solid var(--bg3);cursor:pointer;transition:border-color .2s,transform .1s}
+.btn-s:hover{border-color:var(--blue);transform:translateY(-1px)}
 .scroll-indicator{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:60px;opacity:0;animation:fadeUp .6s .8s forwards}
 .scroll-indicator span{font-size:11px;color:var(--dim);font-family:var(--mono);letter-spacing:1px}
 .scroll-mouse{width:22px;height:34px;border:1.5px solid var(--dim);border-radius:11px;display:flex;justify-content:center;padding-top:5px}
@@ -45,24 +38,26 @@ nav{background:rgba(13,17,23,0.88);backdrop-filter:blur(12px);border-bottom:1px 
 section{padding:80px 40px;max-width:960px;margin:0 auto}
 .sec-label{font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
 .sec-title{font-size:30px;font-weight:700;color:var(--text);margin-bottom:8px}
-.sec-line{width:36px;height:2px;background:var(--blue);margin-bottom:44px;transform:scaleX(0);transform-origin:left;transition:transform .55s}
+.sec-line{width:36px;height:2px;background:var(--blue);margin-bottom:44px;transform:scaleX(0);transform-origin:left;transition:transform .5s}
 .sec-line.visible{transform:scaleX(1)}
 hr.sep{border:none;border-top:1px solid var(--bg3);max-width:960px;margin:0 auto}
 
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .55s,transform .55s}
 .reveal.visible{opacity:1;transform:none}
 
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:32px}
 .stat-card{background:var(--bg2);border:1px solid var(--bg3);border-radius:10px;padding:22px 18px;text-align:center;transition:border-color .25s,transform .25s;cursor:default}
 .stat-card:hover{border-color:var(--blue);transform:translateY(-3px)}
 .stat-num{font-size:34px;font-weight:700;font-family:var(--mono);line-height:1}
+.stat-num.counting{transition:all .05s}
 .stat-label{font-size:12px;color:var(--muted);margin-top:6px}
 
 .lc-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
 .lc-card{background:var(--bg2);border:1px solid var(--bg3);border-radius:10px;padding:20px;text-align:center;transition:border-color .25s,transform .25s}
-.lc-card.easy:hover{border-color:var(--green);transform:translateY(-3px)}
-.lc-card.med:hover{border-color:var(--amber);transform:translateY(-3px)}
-.lc-card.hard:hover{border-color:var(--red);transform:translateY(-3px)}
+.lc-card:hover{transform:translateY(-3px)}
+.lc-card.easy:hover{border-color:var(--green)}
+.lc-card.med:hover{border-color:var(--amber)}
+.lc-card.hard:hover{border-color:var(--red)}
 .lc-num{font-size:28px;font-weight:700;font-family:var(--mono)}
 .lc-bar-wrap{width:100%;height:4px;background:var(--bg3);border-radius:2px;margin-top:10px;overflow:hidden}
 .lc-bar{height:100%;border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
@@ -122,16 +117,24 @@ hr.sep{border:none;border-top:1px solid var(--bg3);max-width:960px;margin:0 auto
 .footer span{color:var(--blue)}
 
 .loading-msg{text-align:center;padding:32px;color:var(--muted);font-size:13px;font-family:var(--mono)}
+.err-msg{font-size:12px;color:var(--red);text-align:center;padding:12px;font-family:var(--mono)}
 .live-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(63,185,80,.1);color:var(--green);border:1px solid rgba(63,185,80,.25);border-radius:20px;font-size:11px;padding:3px 10px;margin-left:10px;vertical-align:middle}
 .live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
 
 @keyframes fadeUp{to{opacity:1;transform:none}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-</style>
-</head>
-<body>
+@keyframes typewriter{from{width:0}to{width:100%}}
 
+.typewriter{overflow:hidden;white-space:nowrap;border-right:2px solid var(--blue);width:0;animation:typewriter 1.8s steps(30) .3s forwards,blink .7s step-end infinite}
+@keyframes blink{50%{border-color:transparent}}
+
+.cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(88,166,255,.07) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left .1s,top .1s;z-index:9999}
+</style>
+
+<h2 class="sr-only">Harshvardhan Beniwal — Backend developer portfolio with live GitHub and LeetCode statistics</h2>
 <div class="cursor-glow" id="glow"></div>
+
+<div style="background:var(--bg);min-height:100vh">
 
 <nav>
   <div class="nav-logo">&lt;<span>HB</span> /&gt;</div>
@@ -148,7 +151,7 @@ hr.sep{border:none;border-top:1px solid var(--bg3);max-width:960px;margin:0 auto
   <canvas id="particles-canvas"></canvas>
   <div class="hero-eyebrow">// backend engineer · gurugram, india</div>
   <h1>Hi, I'm<br><span class="name">Harshvardhan Beniwal</span></h1>
-  <p class="hero-sub">Backend-focused CS student building clean, efficient systems with Java, Spring Boot &amp; MySQL. I own the full dev lifecycle — from architecture to deployment.</p>
+  <p class="hero-sub">Backend-focused CS student building clean, efficient systems with Java, Spring Boot & MySQL. I own the full dev lifecycle — from architecture to deployment.</p>
   <div class="hero-btns">
     <button class="btn-p" onclick="scroll2('projects')">View Projects</button>
     <button class="btn-s" onclick="scroll2('contact')">Get in Touch</button>
@@ -210,7 +213,7 @@ hr.sep{border:none;border-top:1px solid var(--bg3);max-width:960px;margin:0 auto
       <p class="proj-desc">Automates entry and logging of vehicles at a site using computer vision, replacing RFID tracking entirely. Emails a complete Excel report at end of day.</p>
       <ul class="proj-bullets">
         <li>Designed dual ANPR camera system (entry/exit) with a custom-trained YOLOv8 model — 93% accuracy at ~10 FPS</li>
-        <li>Built Python pipeline for image capture, plate extraction, validation &amp; storage — 500+ entries, zero manual intervention</li>
+        <li>Built Python pipeline for image capture, plate extraction, validation & storage — 500+ entries, zero manual intervention</li>
         <li>Automated Excel reporting with OpenPyXL and scheduled email dispatch — reduced ops to a single startup command</li>
       </ul>
       <div class="proj-footer">
@@ -311,9 +314,9 @@ hr.sep{border:none;border-top:1px solid var(--bg3);max-width:960px;margin:0 auto
   <div class="sec-title reveal">Contact</div>
   <div class="sec-line" id="sl-contact"></div>
   <div class="contact-row">
-    <a class="contact-link reveal" href="/cdn-cgi/l/email-protection#9ef6ffecedf6e8ffecfaf6fff0fcfbf0f7e9fff2abdef9f3fff7f2b0fdf1f3">
+    <a class="contact-link reveal" href="mailto:harshvardhanbeniwal5@gmail.com">
       <svg class="ci" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-      <span class="__cf_email__" data-cfemail="1c747d6e6f746a7d6e78747d727e7972756b7d70295c7b717d7570327f7371">[email&#160;protected]</span>
+      harshvardhanbeniwal5@gmail.com
     </a>
     <a class="contact-link reveal" href="https://linkedin.com/in/harshvardhan-beniwal" target="_blank">
       <svg class="ci" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
@@ -331,8 +334,9 @@ hr.sep{border:none;border-top:1px solid var(--bg3);max-width:960px;margin:0 auto
 </section>
 
 <div class="footer">crafted by <span>harshvardhan beniwal</span> · gurugram, india</div>
+</div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function scroll2(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
 
 document.addEventListener('mousemove',e=>{
@@ -345,10 +349,14 @@ document.addEventListener('mousemove',e=>{
   if(!c)return;
   const ctx=c.getContext('2d');
   let W,H,pts=[];
-  function resize(){W=c.width=c.parentElement.offsetWidth;H=c.height=c.parentElement.offsetHeight}
+  function resize(){
+    const p=c.parentElement;
+    W=c.width=p.offsetWidth;H=c.height=p.offsetHeight;
+  }
   resize();
-  window.addEventListener('resize',resize);
-  for(let i=0;i<55;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5});
+  for(let i=0;i<55;i++){
+    pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5})
+  }
   function draw(){
     ctx.clearRect(0,0,W,H);
     pts.forEach(p=>{
@@ -358,9 +366,14 @@ document.addEventListener('mousemove',e=>{
       ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
       ctx.fillStyle='rgba(88,166,255,0.35)';ctx.fill();
     });
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<120){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(88,166,255,${(1-d/120)*0.12})`;ctx.lineWidth=.5;ctx.stroke()}
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){
+          ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle=`rgba(88,166,255,${(1-d/120)*0.12})`;ctx.lineWidth=.5;ctx.stroke();
+        }
+      }
     }
     requestAnimationFrame(draw);
   }
@@ -379,7 +392,6 @@ const io=new IntersectionObserver(entries=>{
 document.querySelectorAll('.reveal,.sec-line').forEach(el=>io.observe(el));
 
 function animCount(el,target,dur){
-  if(!el)return;
   const start=performance.now();
   function step(now){
     const t=Math.min((now-start)/dur,1);
@@ -392,8 +404,10 @@ function animCount(el,target,dur){
 async function loadGH(){
   const el=document.getElementById('gh-stats');
   try{
-    const hdrs={'Accept':'application/vnd.github+json'};
-    const[uR,rR]=await Promise.all([fetch('https://api.github.com/users/Deven2011',{headers:hdrs}),fetch('https://api.github.com/users/Deven2011/repos?per_page=100',{headers:hdrs})]);
+    const[uR,rR]=await Promise.all([
+      fetch('https://api.github.com/users/Deven2011'),
+      fetch('https://api.github.com/users/Deven2011/repos?per_page=100')
+    ]);
     const u=await uR.json(),repos=await rR.json();
     if(u.message)throw new Error();
     const stars=Array.isArray(repos)?repos.reduce((a,r)=>a+(r.stargazers_count||0),0):0;
@@ -401,13 +415,13 @@ async function loadGH(){
     if(Array.isArray(repos))repos.forEach(r=>{if(r.language)langs[r.language]=(langs[r.language]||0)+1});
     const topL=Object.entries(langs).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([l])=>l);
     el.innerHTML=`
-      <div class="stats-grid">
+      <div class="stats-grid reveal">
         <div class="stat-card reveal"><div class="stat-num" style="color:var(--blue)" id="gh-repos">0</div><div class="stat-label">public repos</div></div>
         <div class="stat-card reveal"><div class="stat-num" style="color:var(--green)" id="gh-followers">0</div><div class="stat-label">followers</div></div>
         <div class="stat-card reveal"><div class="stat-num" style="color:var(--amber)" id="gh-stars">0</div><div class="stat-label">total stars</div></div>
         <div class="stat-card reveal"><div class="stat-num" style="color:var(--muted)" id="gh-following">0</div><div class="stat-label">following</div></div>
       </div>
-      ${topL.length?`<div style="margin-top:4px"><div class="sec-label" style="margin-bottom:10px">top languages</div><div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:8px">${topL.map(l=>`<span class="skill-tag">${l}</span>`).join('')}</div></div>`:''}
+      ${topL.length?`<div style="margin-top:4px"><div class="sec-label" style="margin-bottom:10px">top languages</div><div class="skill-tags">${topL.map(l=>`<span class="skill-tag">${l}</span>`).join('')}</div></div>`:''}
       <div class="gh-img-wrap reveal" style="margin-top:20px">
         <img src="https://ghchart.rshah.org/58a6ff/Deven2011" alt="GitHub contribution chart" onerror="this.parentElement.style.display='none'">
       </div>`;
@@ -418,32 +432,38 @@ async function loadGH(){
       animCount(document.getElementById('gh-stars'),stars,1200);
       animCount(document.getElementById('gh-following'),u.following||0,800);
     },300);
-  }catch(e){el.innerHTML=`<div style="color:#f85149;font-size:12px;font-family:var(--mono);padding:12px">Could not load GitHub stats</div>`}
+  }catch(e){el.innerHTML=`<div class="err-msg">Could not load GitHub stats</div>`}
 }
 
 async function loadLC(){
   const el=document.getElementById('lc-stats');
   try{
-    const res=await fetch('https://leetcode-questions-eta.vercel.app/api/leetcode?username=harshvardhanbeniwal');
-    const raw=await res.json();
-    const user=raw.data?.matchedUser;
-    if(!user)throw new Error();
-    const subs=user.submitStats?.acSubmissionNum||[];
-    const allQ=raw.data?.allQuestionsCount||[];
-    const tot=subs.find(x=>x.difficulty==='All')?.count||0;
-    const easy=subs.find(x=>x.difficulty==='Easy')?.count||0;
-    const med=subs.find(x=>x.difficulty==='Medium')?.count||0;
-    const hard=subs.find(x=>x.difficulty==='Hard')?.count||0;
-    const rank=user.profile?.ranking||'N/A';
-    const eT=allQ.find(x=>x.difficulty==='Easy')?.count||150;
-    const mT=allQ.find(x=>x.difficulty==='Medium')?.count||400;
-    const hT=allQ.find(x=>x.difficulty==='Hard')?.count||150;
+    const res = await fetch('https://leetcode-questions-eta.vercel.app/api/leetcode?username=harshvardhanbeniwal');
+    const raw = await res.json();
+
+    const submissions = raw.data.matchedUser.submitStats.acSubmissionNum;
+
+    const d = {
+      totalSolved: submissions.find(x => x.difficulty === 'All')?.count || 0,
+      easySolved:  submissions.find(x => x.difficulty === 'Easy')?.count || 0,
+      mediumSolved: submissions.find(x => x.difficulty === 'Medium')?.count || 0,
+      hardSolved:  submissions.find(x => x.difficulty === 'Hard')?.count || 0,
+      ranking: raw.data.matchedUser.profile?.ranking || 'N/A',
+      totalEasy:   raw.data.allQuestionsCount.find(x => x.difficulty === 'Easy')?.count || 150,
+      totalMedium: raw.data.allQuestionsCount.find(x => x.difficulty === 'Medium')?.count || 400,
+      totalHard:   raw.data.allQuestionsCount.find(x => x.difficulty === 'Hard')?.count || 150,
+    };
+
+    const tot=d.totalSolved||0,easy=d.easySolved||0,med=d.mediumSolved||0,hard=d.hardSolved||0;
+    const rank=d.ranking||'N/A';
     const rate='N/A';
+    const eT=d.totalEasy||100,mT=d.totalMedium||300,hT=d.totalHard||100;
+
     el.innerHTML=`
       <div class="stats-grid">
         <div class="stat-card reveal"><div class="stat-num" style="color:var(--text)" id="lc-tot">0</div><div class="stat-label">problems solved</div></div>
-        <div class="stat-card reveal"><div class="stat-num" style="color:var(--blue)" id="lc-rank">—</div><div class="stat-label">global rank</div></div>
-        <div class="stat-card reveal"><div class="stat-num" style="color:var(--green)">${easy+med+hard > 0 ? easy+med+hard : tot} solved</div><div class="stat-label">total problems</div></div>
+        <div class="stat-card reveal"><div class="stat-num" style="color:var(--blue)" id="lc-rank">#0</div><div class="stat-label">global rank</div></div>
+        <div class="stat-card reveal"><div class="stat-num" style="color:var(--green)">${rate}</div><div class="stat-label">acceptance rate</div></div>
       </div>
       <div class="lc-row">
         <div class="lc-card easy reveal">
@@ -462,26 +482,32 @@ async function loadLC(){
           <div class="lc-bar-wrap"><div class="lc-bar" id="lb-hard" style="background:var(--red)"></div></div>
         </div>
       </div>`;
+
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
     setTimeout(()=>{
       animCount(document.getElementById('lc-tot'),tot,1000);
       animCount(document.getElementById('lc-easy'),easy,900);
       animCount(document.getElementById('lc-med'),med,1000);
       animCount(document.getElementById('lc-hard'),hard,800);
-      const rEl=document.getElementById('lc-rank');
-      if(typeof rank==='number'&&rank>0)animCount(rEl,rank,1200);
-      else if(rEl)rEl.textContent=rank!=='N/A'?'#'+rank:'N/A';
+
+      if(typeof rank==='number')animCount(document.getElementById('lc-rank'),rank,1200);
+      else document.getElementById('lc-rank').textContent='#'+rank;
+
+      setTimeout(()=>{
+        const lb=document.getElementById('lb-easy');if(lb)lb.style.width=Math.round((easy/Math.max(eT,1))*100)+'%';
+        const lm=document.getElementById('lb-med');if(lm)lm.style.width=Math.round((med/Math.max(mT,1))*100)+'%';
+        const lh=document.getElementById('lb-hard');if(lh)lh.style.width=Math.round((hard/Math.max(hT,1))*100)+'%';
+      },200);
     },400);
-    setTimeout(()=>{
-      const lb=document.getElementById('lb-easy');if(lb)lb.style.width=Math.round((easy/Math.max(eT,1))*100)+'%';
-      const lm=document.getElementById('lb-med');if(lm)lm.style.width=Math.round((med/Math.max(mT,1))*100)+'%';
-      const lh=document.getElementById('lb-hard');if(lh)lh.style.width=Math.round((hard/Math.max(hT,1))*100)+'%';
-    },600);
+
   }catch(e){
-    el.innerHTML=`
-      <div style="color:var(--muted);font-size:13px;padding:12px 0;font-family:var(--mono)">
-        Live stats unavailable — <a href="https://leetcode.com/u/harshvardhanbeniwal/" target="_blank" style="color:var(--blue)">view profile directly ↗</a>
-      </div>
-      <div class="lc-row">
-        <div class="lc-card easy reveal"><div class="lc-num" style="color:var(--green)">—</div><div class="stat-label">easy</div></div>
-        <div class="lc-card med reveal"><div class="lc-num" style="color:var(--amber)">—</div><div class="stat-label">medium</div></div>
+    el.innerHTML=`<div style="color:var(--muted);font-size:13px;padding:12px 0;font-family:var(--mono)">
+      Live stats unavailable — <a href="https://leetcode.com/u/harshvardhanbeniwal/" target="_blank" style="color:var(--blue)">view profile directly ↗</a>
+    </div>`;
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  }
+}
+
+loadGH();loadLC();
+</script>
