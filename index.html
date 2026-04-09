@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harshvardhan Beniwal — Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#21262d;
+  --blue:#58a6ff;--blue2:#79b8ff;--green:#3fb950;--amber:#d29922;--red:#f85149;
+  --text:#e6edf3;--muted:#8b949e;--dim:#30363d;
+  --mono:'SF Mono','Fira Code','Fira Mono','Roboto Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+
+.cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(88,166,255,.07) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left .08s,top .08s;z-index:9999}
+
+nav{background:rgba(13,17,23,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--bg3);padding:14px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:999}
+.nav-logo{font-family:var(--mono);color:var(--blue);font-size:15px;font-weight:600;letter-spacing:1px}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--muted);font-size:13px;text-decoration:none;cursor:pointer;transition:color .2s;font-family:var(--mono)}
+.nav-links a:hover{color:var(--text)}
+
+.hero{position:relative;padding:110px 40px 90px;max-width:960px;margin:0 auto;overflow:hidden}
+#particles-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.hero>*:not(#particles-canvas){position:relative;z-index:1}
+.hero-eyebrow{font-family:var(--mono);font-size:13px;color:var(--blue);margin-bottom:20px;opacity:0;animation:fadeUp .6s .1s forwards}
+.hero h1{font-size:56px;font-weight:700;line-height:1.1;margin-bottom:16px;opacity:0;animation:fadeUp .6s .25s forwards}
+.hero h1 .name{background:linear-gradient(90deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:18px;color:var(--muted);line-height:1.7;max-width:540px;margin-bottom:36px;opacity:0;animation:fadeUp .6s .4s forwards}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .55s forwards}
+.btn-p{background:var(--blue);color:#0d1117;padding:11px 26px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:background .2s,transform .15s}
+.btn-p:hover{background:var(--blue2);transform:translateY(-2px)}
+.btn-s{background:transparent;color:var(--blue);padding:11px 26px;border-radius:8px;font-size:14px;font-weight:600;border:1px solid var(--bg3);cursor:pointer;transition:border-color .2s,transform .15s}
+.btn-s:hover{border-color:var(--blue);transform:translateY(-2px)}
+.scroll-indicator{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:60px;opacity:0;animation:fadeUp .6s .8s forwards}
+.scroll-indicator span{font-size:11px;color:var(--dim);font-family:var(--mono);letter-spacing:1px}
+.scroll-mouse{width:22px;height:34px;border:1.5px solid var(--dim);border-radius:11px;display:flex;justify-content:center;padding-top:5px}
+.scroll-dot{width:3px;height:6px;background:var(--blue);border-radius:2px;animation:scrollDot 1.8s infinite}
+@keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1}60%{transform:translateY(10px);opacity:0}}
+
+section{padding:80px 40px;max-width:960px;margin:0 auto}
+.sec-label{font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.sec-title{font-size:30px;font-weight:700;color:var(--text);margin-bottom:8px}
+.sec-line{width:36px;height:2px;background:var(--blue);margin-bottom:44px;transform:scaleX(0);transform-origin:left;transition:transform .55s}
+.sec-line.visible{transform:scaleX(1)}
+hr.sep{border:none;border-top:1px solid var(--bg3);max-width:960px;margin:0 auto}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .55s,transform .55s}
+.reveal.visible{opacity:1;transform:none}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px}
+.stat-card{background:var(--bg2);border:1px solid var(--bg3);border-radius:10px;padding:22px 18px;text-align:center;transition:border-color .25s,transform .25s;cursor:default}
+.stat-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.stat-num{font-size:34px;font-weight:700;font-family:var(--mono);line-height:1}
+.stat-label{font-size:12px;color:var(--muted);margin-top:6px}
+
+.lc-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.lc-card{background:var(--bg2);border:1px solid var(--bg3);border-radius:10px;padding:20px;text-align:center;transition:border-color .25s,transform .25s}
+.lc-card.easy:hover{border-color:var(--green);transform:translateY(-3px)}
+.lc-card.med:hover{border-color:var(--amber);transform:translateY(-3px)}
+.lc-card.hard:hover{border-color:var(--red);transform:translateY(-3px)}
+.lc-num{font-size:28px;font-weight:700;font-family:var(--mono)}
+.lc-bar-wrap{width:100%;height:4px;background:var(--bg3);border-radius:2px;margin-top:10px;overflow:hidden}
+.lc-bar{height:100%;border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+
+.gh-img-wrap{background:var(--bg2);border:1px solid var(--bg3);border-radius:10px;padding:20px;margin-top:20px}
+.gh-img-wrap img{width:100%;border-radius:4px;display:block}
+
+.proj-grid{display:flex;flex-direction:column;gap:22px}
+.proj-card{background:var(--bg2);border:1px solid var(--bg3);border-radius:12px;padding:26px;transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.proj-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.proj-card:hover::before{transform:scaleX(1)}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.proj-title{font-size:17px;font-weight:600;color:var(--text)}
+.proj-date{font-size:12px;color:var(--blue);font-family:var(--mono)}
+.proj-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.proj-bullets{list-style:none;margin-bottom:18px}
+.proj-bullets li{font-size:13px;color:var(--muted);padding:3px 0 3px 18px;position:relative;line-height:1.65}
+.proj-bullets li::before{content:'▸';position:absolute;left:0;color:var(--blue)}
+.proj-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.tech-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.tech-badge{background:rgba(88,166,255,.1);color:var(--blue);font-size:11px;padding:3px 11px;border-radius:20px;font-family:var(--mono);border:1px solid rgba(88,166,255,.2);transition:background .2s}
+.tech-badge:hover{background:rgba(88,166,255,.2)}
+.proj-link{font-size:13px;color:var(--blue);text-decoration:none;transition:opacity .2s}
+.proj-link:hover{opacity:.7}
+
+.skill-groups{display:flex;flex-direction:column;gap:22px}
+.skill-row{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.skill-cat{font-size:12px;color:var(--muted);width:90px;flex-shrink:0;padding-top:7px;font-family:var(--mono)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+.skill-tag{background:var(--bg2);border:1px solid var(--bg3);color:var(--text);font-size:13px;padding:5px 14px;border-radius:20px;transition:border-color .2s,transform .2s,color .2s;cursor:default}
+.skill-tag:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+
+.cert-list{display:flex;flex-direction:column;gap:12px}
+.cert-item{background:var(--bg2);border:1px solid var(--bg3);border-radius:10px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;transition:border-color .2s,transform .2s}
+.cert-item:hover{border-color:var(--blue);transform:translateX(4px)}
+.cert-name{font-size:14px;font-weight:600;color:var(--text)}
+.cert-issuer{font-size:12px;color:var(--muted);margin-top:2px}
+.cert-date{font-size:12px;color:var(--blue);font-family:var(--mono)}
+
+.exp-card{background:var(--bg2);border:1px solid var(--bg3);border-radius:12px;padding:26px;transition:border-color .25s,transform .25s}
+.exp-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.exp-role{font-size:16px;font-weight:600;color:var(--text)}
+.exp-date{font-size:12px;color:var(--blue);font-family:var(--mono)}
+.exp-company{font-size:13px;color:var(--muted);margin-bottom:14px}
+.exp-li{list-style:none}
+.exp-li li{font-size:13px;color:var(--muted);padding:3px 0 3px 18px;position:relative;line-height:1.65}
+.exp-li li::before{content:'▸';position:absolute;left:0;color:var(--blue)}
+
+.contact-row{display:flex;flex-wrap:wrap;gap:14px}
+.contact-link{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--bg3);border-radius:10px;padding:14px 20px;color:var(--muted);text-decoration:none;font-size:14px;cursor:pointer;transition:border-color .2s,color .2s,transform .2s}
+.contact-link:hover{border-color:var(--blue);color:var(--text);transform:translateY(-2px)}
+.ci{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
+.footer{border-top:1px solid var(--bg3);text-align:center;padding:32px;font-size:12px;color:var(--dim);font-family:var(--mono)}
+.footer span{color:var(--blue)}
+
+.loading-msg{text-align:center;padding:32px;color:var(--muted);font-size:13px;font-family:var(--mono)}
+.live-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(63,185,80,.1);color:var(--green);border:1px solid rgba(63,185,80,.25);border-radius:20px;font-size:11px;padding:3px 10px;margin-left:10px;vertical-align:middle}
+.live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+
+@keyframes fadeUp{to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="glow"></div>
+
+<nav>
+  <div class="nav-logo">&lt;<span>HB</span> /&gt;</div>
+  <div class="nav-links">
+    <a onclick="scroll2('about')">about</a>
+    <a onclick="scroll2('stats')">stats</a>
+    <a onclick="scroll2('projects')">projects</a>
+    <a onclick="scroll2('skills')">skills</a>
+    <a onclick="scroll2('contact')">contact</a>
+  </div>
+</nav>
+
+<div class="hero" id="about">
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-eyebrow">// backend engineer · gurugram, india</div>
+  <h1>Hi, I'm<br><span class="name">Harshvardhan Beniwal</span></h1>
+  <p class="hero-sub">Backend-focused CS student building clean, efficient systems with Java, Spring Boot &amp; MySQL. I own the full dev lifecycle — from architecture to deployment.</p>
+  <div class="hero-btns">
+    <button class="btn-p" onclick="scroll2('projects')">View Projects</button>
+    <button class="btn-s" onclick="scroll2('contact')">Get in Touch</button>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+    <span>scroll</span>
+  </div>
+</div>
+
+<hr class="sep">
+
+<section id="stats">
+  <div class="sec-label reveal">// live stats</div>
+  <div class="sec-title reveal">Coding Activity <span class="live-badge"><span class="live-dot"></span>live</span></div>
+  <div class="sec-line" id="sl-stats"></div>
+
+  <div class="sec-label reveal" style="margin-bottom:14px">github — Deven2011</div>
+  <div id="gh-stats"><div class="loading-msg">fetching github stats...</div></div>
+
+  <div class="sec-label reveal" style="margin-top:40px;margin-bottom:14px">leetcode — harshvardhanbeniwal</div>
+  <div id="lc-stats"><div class="loading-msg">fetching leetcode stats...</div></div>
+</section>
+
+<hr class="sep">
+
+<section id="experience">
+  <div class="sec-label reveal">// experience</div>
+  <div class="sec-title reveal">Work</div>
+  <div class="sec-line" id="sl-exp"></div>
+  <div class="exp-card reveal">
+    <div class="exp-top">
+      <div class="exp-role">Web Development Intern</div>
+      <div class="exp-date">Jun 2024 – Jul 2024</div>
+    </div>
+    <div class="exp-company">Octanet Media Services · Remote</div>
+    <ul class="exp-li">
+      <li>Developed and deployed a responsive streaming platform clone with dynamic content rendering and production-level stability across devices</li>
+      <li>Led and mentored a fellow intern as team lead, coordinating tasks and ensuring smooth collaboration</li>
+      <li>Performed continuous debugging and resolved production-level issues, improving application stability and UX</li>
+      <li>Built with React, HTML, CSS, and JavaScript delivering a fluid responsive UI experience</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="sep">
+
+<section id="projects">
+  <div class="sec-label reveal">// work</div>
+  <div class="sec-title reveal">Projects</div>
+  <div class="sec-line" id="sl-proj"></div>
+  <div class="proj-grid">
+
+    <div class="proj-card reveal">
+      <div class="proj-top">
+        <div class="proj-title">Automated Vehicle Logging System</div>
+        <div class="proj-date">Jan 2025</div>
+      </div>
+      <p class="proj-desc">Automates entry and logging of vehicles at a site using computer vision, replacing RFID tracking entirely. Emails a complete Excel report at end of day.</p>
+      <ul class="proj-bullets">
+        <li>Designed dual ANPR camera system (entry/exit) with a custom-trained YOLOv8 model — 93% accuracy at ~10 FPS</li>
+        <li>Built Python pipeline for image capture, plate extraction, validation &amp; storage — 500+ entries, zero manual intervention</li>
+        <li>Automated Excel reporting with OpenPyXL and scheduled email dispatch — reduced ops to a single startup command</li>
+      </ul>
+      <div class="proj-footer">
+        <div class="tech-wrap">
+          <span class="tech-badge">Python</span><span class="tech-badge">YOLOv8</span><span class="tech-badge">OpenCV</span><span class="tech-badge">SMTP</span><span class="tech-badge">OpenPyXL</span>
+        </div>
+        <a class="proj-link" href="https://github.com/Deven2011" target="_blank">↗ view on github</a>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-top">
+        <div class="proj-title">Streaming Platform Clone</div>
+        <div class="proj-date">Jun–Jul 2024</div>
+      </div>
+      <p class="proj-desc">Responsive streaming platform clone built during internship at Octanet Media Services, with production-level stability and dynamic content rendering.</p>
+      <ul class="proj-bullets">
+        <li>Led a two-person intern team as team lead, coordinating tasks end-to-end</li>
+        <li>Resolved production-level bugs continuously, improving UX and app stability across devices</li>
+      </ul>
+      <div class="proj-footer">
+        <div class="tech-wrap">
+          <span class="tech-badge">React</span><span class="tech-badge">HTML</span><span class="tech-badge">CSS</span><span class="tech-badge">JavaScript</span>
+        </div>
+        <a class="proj-link" href="https://github.com/Deven2011" target="_blank">↗ view on github</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="sep">
+
+<section id="skills">
+  <div class="sec-label reveal">// toolkit</div>
+  <div class="sec-title reveal">Skills</div>
+  <div class="sec-line" id="sl-skills"></div>
+  <div class="skill-groups">
+    <div class="skill-row reveal">
+      <div class="skill-cat">languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Java</span><span class="skill-tag">Python</span><span class="skill-tag">C++</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Dart</span><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <div class="skill-cat">frameworks</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Spring Boot</span><span class="skill-tag">React.js</span><span class="skill-tag">Flutter</span><span class="skill-tag">Node.js</span>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <div class="skill-cat">databases</div>
+      <div class="skill-tags">
+        <span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <div class="skill-cat">tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span><span class="skill-tag">Docker</span><span class="skill-tag">OpenCV</span><span class="skill-tag">OpenPyXL</span>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <div class="skill-cat">concepts</div>
+      <div class="skill-tags">
+        <span class="skill-tag">REST APIs</span><span class="skill-tag">CRUD</span><span class="skill-tag">Backend Dev</span><span class="skill-tag">Computer Vision</span><span class="skill-tag">ANPR</span><span class="skill-tag">YOLOv8</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<section id="certs">
+  <div class="sec-label reveal">// credentials</div>
+  <div class="sec-title reveal">Certifications</div>
+  <div class="sec-line" id="sl-certs"></div>
+  <div class="cert-list">
+    <div class="cert-item reveal">
+      <div><div class="cert-name">MongoDB — Document Model</div><div class="cert-issuer">MongoDB</div></div>
+      <div class="cert-date">Mar 2026</div>
+    </div>
+    <div class="cert-item reveal">
+      <div><div class="cert-name">AWS — Generative AI Foundations</div><div class="cert-issuer">Amazon Web Services</div></div>
+      <div class="cert-date">Nov 2025</div>
+    </div>
+    <div class="cert-item reveal">
+      <div><div class="cert-name">AWS — Cloud Foundations</div><div class="cert-issuer">Amazon Web Services</div></div>
+      <div class="cert-date">Nov 2023</div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<section id="contact">
+  <div class="sec-label reveal">// reach me</div>
+  <div class="sec-title reveal">Contact</div>
+  <div class="sec-line" id="sl-contact"></div>
+  <div class="contact-row">
+    <a class="contact-link reveal" href="/cdn-cgi/l/email-protection#9ef6ffecedf6e8ffecfaf6fff0fcfbf0f7e9fff2abdef9f3fff7f2b0fdf1f3">
+      <svg class="ci" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      <span class="__cf_email__" data-cfemail="1c747d6e6f746a7d6e78747d727e7972756b7d70295c7b717d7570327f7371">[email&#160;protected]</span>
+    </a>
+    <a class="contact-link reveal" href="https://linkedin.com/in/harshvardhan-beniwal" target="_blank">
+      <svg class="ci" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      LinkedIn
+    </a>
+    <a class="contact-link reveal" href="https://github.com/Deven2011" target="_blank">
+      <svg class="ci" viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+      GitHub
+    </a>
+    <a class="contact-link reveal" href="tel:+919499174875">
+      <svg class="ci" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      +91 9499174875
+    </a>
+  </div>
+</section>
+
+<div class="footer">crafted by <span>harshvardhan beniwal</span> · gurugram, india</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function scroll2(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+document.addEventListener('mousemove',e=>{
+  const g=document.getElementById('glow');
+  if(g){g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'}
+});
+
+(function initParticles(){
+  const c=document.getElementById('particles-canvas');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=c.parentElement.offsetWidth;H=c.height=c.parentElement.offsetHeight}
+  resize();
+  window.addEventListener('resize',resize);
+  for(let i=0;i<55;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5});
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;
+      if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(88,166,255,0.35)';ctx.fill();
+    });
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<120){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(88,166,255,${(1-d/120)*0.12})`;ctx.lineWidth=.5;ctx.stroke()}
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      const sl=e.target.closest('section');
+      if(sl){const line=sl.querySelector('.sec-line');if(line)line.classList.add('visible')}
+    }
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal,.sec-line').forEach(el=>io.observe(el));
+
+function animCount(el,target,dur){
+  if(!el)return;
+  const start=performance.now();
+  function step(now){
+    const t=Math.min((now-start)/dur,1);
+    el.textContent=Math.round(t*target).toLocaleString();
+    if(t<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+async function loadGH(){
+  const el=document.getElementById('gh-stats');
+  try{
+    const hdrs={'Accept':'application/vnd.github+json'};
+    const[uR,rR]=await Promise.all([fetch('https://api.github.com/users/Deven2011',{headers:hdrs}),fetch('https://api.github.com/users/Deven2011/repos?per_page=100',{headers:hdrs})]);
+    const u=await uR.json(),repos=await rR.json();
+    if(u.message)throw new Error();
+    const stars=Array.isArray(repos)?repos.reduce((a,r)=>a+(r.stargazers_count||0),0):0;
+    const langs={};
+    if(Array.isArray(repos))repos.forEach(r=>{if(r.language)langs[r.language]=(langs[r.language]||0)+1});
+    const topL=Object.entries(langs).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([l])=>l);
+    el.innerHTML=`
+      <div class="stats-grid">
+        <div class="stat-card reveal"><div class="stat-num" style="color:var(--blue)" id="gh-repos">0</div><div class="stat-label">public repos</div></div>
+        <div class="stat-card reveal"><div class="stat-num" style="color:var(--green)" id="gh-followers">0</div><div class="stat-label">followers</div></div>
+        <div class="stat-card reveal"><div class="stat-num" style="color:var(--amber)" id="gh-stars">0</div><div class="stat-label">total stars</div></div>
+        <div class="stat-card reveal"><div class="stat-num" style="color:var(--muted)" id="gh-following">0</div><div class="stat-label">following</div></div>
+      </div>
+      ${topL.length?`<div style="margin-top:4px"><div class="sec-label" style="margin-bottom:10px">top languages</div><div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:8px">${topL.map(l=>`<span class="skill-tag">${l}</span>`).join('')}</div></div>`:''}
+      <div class="gh-img-wrap reveal" style="margin-top:20px">
+        <img src="https://ghchart.rshah.org/58a6ff/Deven2011" alt="GitHub contribution chart" onerror="this.parentElement.style.display='none'">
+      </div>`;
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    setTimeout(()=>{
+      animCount(document.getElementById('gh-repos'),u.public_repos||0,1000);
+      animCount(document.getElementById('gh-followers'),u.followers||0,1000);
+      animCount(document.getElementById('gh-stars'),stars,1200);
+      animCount(document.getElementById('gh-following'),u.following||0,800);
+    },300);
+  }catch(e){el.innerHTML=`<div style="color:#f85149;font-size:12px;font-family:var(--mono);padding:12px">Could not load GitHub stats</div>`}
+}
+
+async function loadLC(){
+  const el=document.getElementById('lc-stats');
+  try{
+    const res=await fetch('https://leetcode-questions-eta.vercel.app/api/leetcode?username=harshvardhanbeniwal');
+    const raw=await res.json();
+    const user=raw.data?.matchedUser;
+    if(!user)throw new Error();
+    const subs=user.submitStats?.acSubmissionNum||[];
+    const allQ=raw.data?.allQuestionsCount||[];
+    const tot=subs.find(x=>x.difficulty==='All')?.count||0;
+    const easy=subs.find(x=>x.difficulty==='Easy')?.count||0;
+    const med=subs.find(x=>x.difficulty==='Medium')?.count||0;
+    const hard=subs.find(x=>x.difficulty==='Hard')?.count||0;
+    const rank=user.profile?.ranking||'N/A';
+    const eT=allQ.find(x=>x.difficulty==='Easy')?.count||150;
+    const mT=allQ.find(x=>x.difficulty==='Medium')?.count||400;
+    const hT=allQ.find(x=>x.difficulty==='Hard')?.count||150;
+    const rate='N/A';
+    el.innerHTML=`
+      <div class="stats-grid">
+        <div class="stat-card reveal"><div class="stat-num" style="color:var(--text)" id="lc-tot">0</div><div class="stat-label">problems solved</div></div>
+        <div class="stat-card reveal"><div class="stat-num" style="color:var(--blue)" id="lc-rank">—</div><div class="stat-label">global rank</div></div>
+        <div class="stat-card reveal"><div class="stat-num" style="color:var(--green)">${easy+med+hard > 0 ? easy+med+hard : tot} solved</div><div class="stat-label">total problems</div></div>
+      </div>
+      <div class="lc-row">
+        <div class="lc-card easy reveal">
+          <div class="lc-num" style="color:var(--green)" id="lc-easy">0</div>
+          <div class="stat-label">easy</div>
+          <div class="lc-bar-wrap"><div class="lc-bar" id="lb-easy" style="background:var(--green)"></div></div>
+        </div>
+        <div class="lc-card med reveal">
+          <div class="lc-num" style="color:var(--amber)" id="lc-med">0</div>
+          <div class="stat-label">medium</div>
+          <div class="lc-bar-wrap"><div class="lc-bar" id="lb-med" style="background:var(--amber)"></div></div>
+        </div>
+        <div class="lc-card hard reveal">
+          <div class="lc-num" style="color:var(--red)" id="lc-hard">0</div>
+          <div class="stat-label">hard</div>
+          <div class="lc-bar-wrap"><div class="lc-bar" id="lb-hard" style="background:var(--red)"></div></div>
+        </div>
+      </div>`;
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    setTimeout(()=>{
+      animCount(document.getElementById('lc-tot'),tot,1000);
+      animCount(document.getElementById('lc-easy'),easy,900);
+      animCount(document.getElementById('lc-med'),med,1000);
+      animCount(document.getElementById('lc-hard'),hard,800);
+      const rEl=document.getElementById('lc-rank');
+      if(typeof rank==='number'&&rank>0)animCount(rEl,rank,1200);
+      else if(rEl)rEl.textContent=rank!=='N/A'?'#'+rank:'N/A';
+    },400);
+    setTimeout(()=>{
+      const lb=document.getElementById('lb-easy');if(lb)lb.style.width=Math.round((easy/Math.max(eT,1))*100)+'%';
+      const lm=document.getElementById('lb-med');if(lm)lm.style.width=Math.round((med/Math.max(mT,1))*100)+'%';
+      const lh=document.getElementById('lb-hard');if(lh)lh.style.width=Math.round((hard/Math.max(hT,1))*100)+'%';
+    },600);
+  }catch(e){
+    el.innerHTML=`
+      <div style="color:var(--muted);font-size:13px;padding:12px 0;font-family:var(--mono)">
+        Live stats unavailable — <a href="https://leetcode.com/u/harshvardhanbeniwal/" target="_blank" style="color:var(--blue)">view profile directly ↗</a>
+      </div>
+      <div class="lc-row">
+        <div class="lc-card easy reveal"><div class="lc-num" style="color:var(--green)">—</div><div class="stat-label">easy</div></div>
+        <div class="lc-card med reveal"><div class="lc-num" style="color:var(--amber)">—</div><div class="stat-label">medium</div></div>
