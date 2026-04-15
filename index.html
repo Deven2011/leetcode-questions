@@ -1065,7 +1065,7 @@
     <li><a href="#coding-stats">Stats</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:harshvardhanbeniwal5@gmail.com" class="nav-cta">Hire Me ↗</a>
+  <a href="#" class="nav-cta" data-target="contact">Hire Me ↗</a>
 </nav>
 
 <!-- HERO -->
@@ -1631,6 +1631,14 @@
     option.addEventListener('mouseenter', () => setSelectedMenuIndex(index));
     option.addEventListener('click', () => showSection(option.dataset.target));
   });
+
+  const navCta = document.querySelector('.nav-cta[data-target]');
+  if (navCta) {
+    navCta.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection(navCta.dataset.target);
+    });
+  }
 
   if (menuResumeButton) {
     menuResumeButton.addEventListener('mouseenter', () => {
