@@ -597,6 +597,22 @@
   .stat-item { background: var(--bg2); padding: 1.2rem 1rem; text-align: center; }
   .stat-num { font-family: var(--sans); font-size: 1.8rem; font-weight: 800; color: var(--accent); display: block; }
   .stat-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .repo-counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: #e8e8ec;
+  }
+  .repo-label {
+    opacity: 0.7;
+  }
+  .repo-value {
+    color: #f97316;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
 
   /* SECTION COMMON */
   section { padding: 6rem 4rem; }
@@ -1368,6 +1384,10 @@
           <div class="stats-title">GitHub Overview</div>
           <div class="stats-handle">@Deven2011</div>
         </div>
+        <div class="repo-counter">
+          <span class="repo-label">Total Repositories:</span>
+          <span id="repoCount" class="repo-value">--</span>
+        </div>
         <img
           class="stats-embed"
           src="https://github-readme-stats-rho-seven-w9avcmgu0b.vercel.app/api?username=Deven2011&show_icons=true&theme=transparent&hide_border=true&title_color=f97316&icon_color=f97316&text_color=e8e8ec&include_all_commits=true&count_private=true"
@@ -1695,6 +1715,36 @@
     });
   }
 
+  async function loadRepoCount() {
+    try {
+      const res = await fetch('https://api.github.com/users/Deven2011');
+      const data = await res.json();
+
+      const repoEl = document.getElementById('repoCount');
+      if (repoEl && data.public_repos !== undefined) {
+        animateCount(repoEl, data.public_repos);
+      }
+    } catch (err) {
+      console.error('Repo count error:', err);
+    }
+  }
+
+  function animateCount(el, target) {
+    let current = 0;
+    const increment = Math.ceil(target / 30);
+
+    const interval = setInterval(() => {
+      current += increment;
+
+      if (current >= target) {
+        current = target;
+        clearInterval(interval);
+      }
+
+      el.textContent = current;
+    }, 30);
+  }
+
   // Dynamic background particles
   const bgCanvas = document.getElementById('bgDynamic');
   const bgCtx = bgCanvas.getContext('2d');
@@ -1763,6 +1813,8 @@
     resizeBg();
     initParticles();
   });
+
+  loadRepoCount();
 </script>
 <div id="glitchOverlay"></div>
 </body>
