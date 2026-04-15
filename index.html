@@ -840,6 +840,8 @@
   }
   .stats-embed {
     width: 100%;
+    min-height: 150px;
+    display: block;
     border: 1px solid var(--border);
     background: var(--bg3);
     border-radius: 4px;
@@ -1368,9 +1370,10 @@
         </div>
         <img
           class="stats-embed"
-          src="https://github-readme-stats.vercel.app/api?username=Deven2011&show_icons=true&theme=transparent&hide_border=true&title_color=f97316&icon_color=f97316&text_color=e8e8ec"
-          alt="GitHub stats for Deven2011"
+          src="https://github-readme-stats.vercel.app/api?username=Deven2011&show_icons=true&theme=transparent&hide_border=true&title_color=f97316&icon_color=f97316&text_color=e8e8ec&cache_seconds=1800"
+          alt="GitHub stats"
           loading="lazy"
+          onerror="this.src='https://github-readme-stats.vercel.app/api?username=Deven2011&show_icons=true'"
           referrerpolicy="no-referrer"
         />
       </article>
