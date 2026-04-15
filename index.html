@@ -1619,6 +1619,15 @@
     menuResumeButton.addEventListener('mouseenter', () => {
       menuOptions.forEach(option => option.classList.remove('is-selected'));
     });
+
+    menuResumeButton.addEventListener('click', () => {
+      const resumeLink = document.createElement('a');
+      resumeLink.href = 'Harshvardhan_Beniwal_Resume.pdf';
+      resumeLink.setAttribute('download', 'Harshvardhan_Beniwal_Resume.pdf');
+      document.body.appendChild(resumeLink);
+      resumeLink.click();
+      resumeLink.remove();
+    });
   }
 
   globalBackBtn.addEventListener('click', () => {
