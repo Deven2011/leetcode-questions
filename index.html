@@ -38,6 +38,7 @@
     font-size: 16px;
     line-height: 1.7;
     overflow-x: hidden;
+    overflow-y: auto;
     cursor: none;
   }
   a, button { cursor: none; }
@@ -202,6 +203,11 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+  }
+  section.content-panel {
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 100px;
   }
   .content-panel {
     display: none;
@@ -1034,6 +1040,7 @@
         <button class="menu-screen__option" type="button" data-target="experience" role="menuitem">Experience</button>
         <button class="menu-screen__option" type="button" data-target="projects" role="menuitem">Projects</button>
         <button class="menu-screen__option" type="button" data-target="skills" role="menuitem">Skills</button>
+        <button class="menu-screen__option" type="button" data-target="certifications" role="menuitem">Certifications</button>
         <button class="menu-screen__option" type="button" data-target="coding-stats" role="menuitem">Coding Stats</button>
         <button class="menu-screen__option" type="button" data-target="contact" role="menuitem">Contact</button>
       </div>
@@ -1376,7 +1383,7 @@
   <h2 class="section-title fade-up">Verified <span>Skills</span></h2>
   <div class="certs-grid">
 
-    <a href="#" class="cert-card fade-up" target="_blank">
+    <a href="https://www.credly.com/users/harshvardhan-beniwal/badges#credly" class="cert-card fade-up" target="_blank">
       <div class="cert-icon">🍃</div>
       <div>
         <div class="cert-name">MongoDB – Document Model</div>
@@ -1385,7 +1392,7 @@
       </div>
     </a>
 
-    <a href="#" class="cert-card fade-up stagger-1" target="_blank">
+    <a href="https://www.credly.com/users/harshvardhan-beniwal/badges#credly" class="cert-card fade-up stagger-1" target="_blank">
       <div class="cert-icon">☁️</div>
       <div>
         <div class="cert-name">AWS – Generative AI Foundations</div>
@@ -1394,7 +1401,7 @@
       </div>
     </a>
 
-    <a href="#" class="cert-card fade-up stagger-2" target="_blank">
+    <a href="https://www.credly.com/users/harshvardhan-beniwal/badges#credly" class="cert-card fade-up stagger-2" target="_blank">
       <div class="cert-icon">🌩️</div>
       <div>
         <div class="cert-name">AWS – Cloud Foundations</div>
@@ -1633,6 +1640,7 @@
       const target = document.getElementById(targetId);
       if (target) {
         target.classList.add('is-active');
+        target.scrollTop = 0;
         window.scrollTo({ top: 0, behavior: 'smooth' });
         requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
         target.querySelectorAll('.fade-up').forEach(item => item.classList.add('visible'));
