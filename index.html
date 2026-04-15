@@ -699,6 +699,29 @@
   }
   .skill-tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
   .skill-tag.accent { border-color: var(--accent-glow); color: var(--accent); background: var(--accent-dim); }
+  .cert-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .cert-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(24,24,29,0.7);
+  }
+  .cert-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
 
   /* EXPERIENCE */
   #experience { background: rgba(17,17,20,0.72); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -1238,6 +1261,30 @@
         <span class="skill-tag">Gen AI Foundations</span>
         <span class="skill-tag">Cloud Foundations</span>
         <span class="skill-tag">MongoDB Atlas</span>
+      </div>
+    </div>
+
+    <div class="skill-group fade-up stagger-2">
+      <div class="skill-group-header">
+        <span class="skill-icon">🏆</span>
+        <div>
+          <div class="skill-group-name">Certifications & Achievements</div>
+          <div class="skill-category-label">Verified Credentials</div>
+        </div>
+      </div>
+      <div class="cert-tags">
+        <a href="https://www.credly.com/users/harshvardhan-beniwal/badges#credly" target="_blank" class="cert-tag">
+          <span>☁️</span>
+          <span>AWS Cloud Foundations</span>
+        </a>
+        <a href="https://www.credly.com/users/harshvardhan-beniwal/badges#credly" target="_blank" class="cert-tag">
+          <span>🤖</span>
+          <span>AWS Generative AI Foundations</span>
+        </a>
+        <a href="https://www.credly.com/users/harshvardhan-beniwal/badges#credly" target="_blank" class="cert-tag">
+          <span>🍃</span>
+          <span>MongoDB Relational Databases</span>
+        </a>
       </div>
     </div>
 
